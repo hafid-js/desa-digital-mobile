@@ -1,6 +1,7 @@
 import 'package:desa_digital/app/routes/app_routes.dart';
 import 'package:desa_digital/core/constants/app_assets.dart';
 import 'package:desa_digital/features/agenda/domain/entities/event_agenda.dart';
+import 'package:desa_digital/features/artikel/domain/entities/article_category.dart';
 import 'package:desa_digital/core/constants/app_colors.dart';
 import 'package:desa_digital/core/utils/responsive.dart';
 import 'package:desa_digital/core/widgets/app_search_bar.dart';
@@ -169,7 +170,10 @@ class HomeScreen extends StatelessWidget {
             items: _controller.artikelTerbaru,
             padding: const EdgeInsets.only(left: 15, top: 5, bottom: 20),
             onButtonPressed: () => Get.toNamed(Routes.artikel),
-            onTap: (item) {},
+            onTap: (item) => Get.toNamed(
+              Routes.detailArtikel,
+              arguments: ArticleSample(title: item.title),
+            ),
           ),
           const SizedBox(height: 8),
           if (_controller.ringkasanApbdes.value != null)
