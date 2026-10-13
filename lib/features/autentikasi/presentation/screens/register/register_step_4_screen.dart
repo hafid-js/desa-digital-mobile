@@ -6,34 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-class RegisterStep4Screen extends StatefulWidget {
+class RegisterStep4Screen extends StatelessWidget {
   const RegisterStep4Screen({super.key});
 
-  @override
-  State<RegisterStep4Screen> createState() => _RegisterStep4ScreenState();
-}
-
-class _RegisterStep4ScreenState extends State<RegisterStep4Screen> {
-  final FocusNode _focusNode = FocusNode();
   RegisterController get _controller => Get.find<RegisterController>();
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _focusNode.requestFocus();
-    });
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
-  }
 
   Widget _buildFieldWhatsapp() {
     return TextFormField(
-      focusNode: _focusNode,
+      autofocus: true,
       keyboardType: TextInputType.phone,
       decoration: dekorasiInputRegistrasi(hint: "08XXXXXXXXXX"),
     );
@@ -52,27 +32,23 @@ class _RegisterStep4ScreenState extends State<RegisterStep4Screen> {
         Icon(Iconsax.info_circle5, color: AppColors.tertiary),
         const SizedBox(width: 9),
         Expanded(
-          child: Column(
-            children: [
-              RichText(
-                textAlign: TextAlign.start,
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "Dengan klik Daftar & Kirim Kode, kamu menyetujui ",
-                      style: gayaTeks,
-                    ),
-                    TextSpan(
-                      text: "Syarat dan Ketentuan ",
-                      style: gayaTeksTautan,
-                    ),
-                    TextSpan(text: "serta ", style: gayaTeks),
-                    TextSpan(text: "Kebijakan Privasi ", style: gayaTeksTautan),
-                    TextSpan(text: "yang berlaku.", style: gayaTeks),
-                  ],
+          child: RichText(
+            textAlign: TextAlign.start,
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: "Dengan klik Daftar & Kirim Kode, kamu menyetujui ",
+                  style: gayaTeks,
                 ),
-              ),
-            ],
+                TextSpan(
+                  text: "Syarat dan Ketentuan ",
+                  style: gayaTeksTautan,
+                ),
+                TextSpan(text: "serta ", style: gayaTeks),
+                TextSpan(text: "Kebijakan Privasi ", style: gayaTeksTautan),
+                TextSpan(text: "yang berlaku.", style: gayaTeks),
+              ],
+            ),
           ),
         ),
       ],

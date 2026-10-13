@@ -5,18 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-const List<({double radiusIkon, double radiusKartu})> _radiusBagian = [
-  (radiusIkon: 12, radiusKartu: 12),
-  (radiusIkon: 8, radiusKartu: 8),
-  (radiusIkon: 8, radiusKartu: 8),
-  (radiusIkon: 8, radiusKartu: 8),
-  (radiusIkon: 8, radiusKartu: 8),
-];
+const double _radiusUtama = 12;
+const double _radiusBiasa = 8;
 
 class CuacaScreen extends StatelessWidget {
   const CuacaScreen({super.key});
 
   WeatherController get _controller => Get.find<WeatherController>();
+
+  double _radiusUntuk(int index) => index == 0 ? _radiusUtama : _radiusBiasa;
 
   PreferredSize _buildPencarian(BuildContext context) {
     return PreferredSize(
@@ -86,27 +83,23 @@ class CuacaScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: Column(
-            children: [
-              Obx(
-                () => Column(
-                  children: [
-                    for (
-                      var index = 0;
-                      index < _controller.lokasi.length;
-                      index++
-                    ) ...[
-                      SectionCuaca(
-                        lokasi: _controller.lokasi[index],
-                        radiusIkon: _radiusBagian[index].radiusIkon,
-                        radiusKartu: _radiusBagian[index].radiusKartu,
-                      ),
-                      const SizedBox(height: 12),
-                    ],
-                  ],
-                ),
-              ),
-            ],
+          child: Obx(
+            () => Column(
+              children: [
+                for (
+                  var index = 0;
+                  index < _controller.lokasi.length;
+                  index++
+                ) ...[
+                  SectionCuaca(
+                    lokasi: _controller.lokasi[index],
+                    radiusIkon: _radiusUntuk(index),
+                    radiusKartu: _radiusUntuk(index),
+                  ),
+                  const SizedBox(height: 12),
+                ],
+              ],
+            ),
           ),
         ),
       ),

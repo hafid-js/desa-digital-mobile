@@ -4,30 +4,10 @@ import 'package:desa_digital/features/autentikasi/presentation/widgets/register_
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RegisterStep1Screen extends StatefulWidget {
+class RegisterStep1Screen extends StatelessWidget {
   const RegisterStep1Screen({super.key});
 
-  @override
-  State<RegisterStep1Screen> createState() => _RegisterStep1ScreenState();
-}
-
-class _RegisterStep1ScreenState extends State<RegisterStep1Screen> {
-  final FocusNode _focusNode = FocusNode();
   RegisterController get _controller => Get.find<RegisterController>();
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _focusNode.requestFocus();
-    });
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +16,7 @@ class _RegisterStep1ScreenState extends State<RegisterStep1Screen> {
       subjudul: "Pastikan email aktif jaga-jaga kalau kamu lupa password",
       langkah: RegisterStep.email.nomor,
       field: TextFormField(
-        focusNode: _focusNode,
+        autofocus: true,
         keyboardType: TextInputType.emailAddress,
         decoration: dekorasiInputRegistrasi(
           hint: "Contoh: hafid.tampan@gmail.com",

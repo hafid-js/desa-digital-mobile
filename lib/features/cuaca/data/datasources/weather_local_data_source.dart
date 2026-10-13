@@ -13,73 +13,22 @@ class WeatherLocalDataSource implements WeatherDataSource {
 
 const String _namaWilayah = "Cepedak, Bruno";
 
-const List<WeatherForecast> _prakiraan = [
-  WeatherForecast(
-    day: "Min, 4 Okt",
-    condition: "Berawan",
-    temperature: "24-29",
-    humidity: "68-87%",
-  ),
-  WeatherForecast(
-    day: "Min, 4 Okt",
-    condition: "Berawan",
-    temperature: "24-29",
-    humidity: "68-87%",
-  ),
-  WeatherForecast(
-    day: "Min, 4 Okt",
-    condition: "Berawan",
-    temperature: "24-29",
-    humidity: "68-87%",
-  ),
-  WeatherForecast(
-    day: "Min, 4 Okt",
-    condition: "Berawan",
-    temperature: "24-29",
-    humidity: "68-87%",
-  ),
-  WeatherForecast(
-    day: "Min, 4 Okt",
-    condition: "Berawan",
-    temperature: "24-29",
-    humidity: "68-87%",
-  ),
-  WeatherForecast(
-    day: "Min, 4 Okt",
-    condition: "Berawan",
-    temperature: "24-29",
-    humidity: "68-87%",
-  ),
-  WeatherForecast(
-    day: "Min, 4 Okt",
-    condition: "Berawan",
-    temperature: "24-29",
-    humidity: "68-87%",
-  ),
-  WeatherForecast(
-    day: "Min, 4 Okt",
-    condition: "Berawan",
-    temperature: "24-29",
-    humidity: "68-87%",
-  ),
-  WeatherForecast(
-    day: "Min, 4 Okt",
-    condition: "Berawan",
-    temperature: "24-29",
-    humidity: "68-87%",
-  ),
-  WeatherForecast(
-    day: "Min, 4 Okt",
-    condition: "Berawan",
-    temperature: "24-29",
-    humidity: "68-87%",
-  ),
-];
+const WeatherForecast _contohPrakiraan = WeatherForecast(
+  day: "Min, 4 Okt",
+  condition: "Berawan",
+  temperature: "24-29",
+  humidity: "68-87%",
+);
 
-const List<WeatherLocation> _locations = [
-  WeatherLocation(id: 'lokasi-1', name: _namaWilayah, forecasts: _prakiraan),
-  WeatherLocation(id: 'lokasi-2', name: _namaWilayah, forecasts: _prakiraan),
-  WeatherLocation(id: 'lokasi-3', name: _namaWilayah, forecasts: _prakiraan),
-  WeatherLocation(id: 'lokasi-4', name: _namaWilayah, forecasts: _prakiraan),
-  WeatherLocation(id: 'lokasi-5', name: _namaWilayah, forecasts: _prakiraan),
+final List<WeatherForecast> _prakiraan = List<WeatherForecast>.unmodifiable(
+  List<WeatherForecast>.filled(10, _contohPrakiraan),
+);
+
+final List<WeatherLocation> _locations = [
+  for (var nomor = 1; nomor <= 5; nomor++)
+    WeatherLocation(
+      id: 'lokasi-$nomor',
+      name: _namaWilayah,
+      forecasts: _prakiraan,
+    ),
 ];

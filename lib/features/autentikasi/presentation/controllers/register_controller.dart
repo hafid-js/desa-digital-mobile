@@ -8,10 +8,7 @@ class RegisterController extends GetxController {
   void togglePassword() =>
       sembunyikanPassword.value = !sembunyikanPassword.value;
 
-  bool goto(RegisterStep step) {
-    Get.toNamed(_routeOf(step));
-    return true;
-  }
+  void goto(RegisterStep step) => Get.toNamed(_routeOf(step));
 
   void gotoVerifikasiOtp() => Get.toNamed(Routes.verifikasiOtp);
 

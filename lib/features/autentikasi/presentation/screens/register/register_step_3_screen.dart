@@ -4,30 +4,10 @@ import 'package:desa_digital/features/autentikasi/presentation/widgets/register_
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RegisterStep3Screen extends StatefulWidget {
+class RegisterStep3Screen extends StatelessWidget {
   const RegisterStep3Screen({super.key});
 
-  @override
-  State<RegisterStep3Screen> createState() => _RegisterStep3ScreenState();
-}
-
-class _RegisterStep3ScreenState extends State<RegisterStep3Screen> {
-  final FocusNode _focusNode = FocusNode();
   RegisterController get _controller => Get.find<RegisterController>();
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _focusNode.requestFocus();
-    });
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
-  }
 
   InputDecoration _dekorasiPassword(bool sembunyikanPassword) {
     return dekorasiInputRegistrasi(
@@ -47,10 +27,10 @@ class _RegisterStep3ScreenState extends State<RegisterStep3Screen> {
     return RegisterStepScaffold(
       judul: "Buat Password",
       subjudul: "Gunakan kombinasi angka dan huruf",
-      langkah: 3,
+      langkah: RegisterStep.kataSandi.nomor,
       field: Obx(
         () => TextFormField(
-          focusNode: _focusNode,
+          autofocus: true,
           obscureText: _controller.sembunyikanPassword.value,
           keyboardType: TextInputType.visiblePassword,
           decoration: _dekorasiPassword(_controller.sembunyikanPassword.value),
@@ -58,7 +38,6 @@ class _RegisterStep3ScreenState extends State<RegisterStep3Screen> {
       ),
       onLanjut: () => _controller.goto(RegisterStep.whatsapp),
       labelLanjut: "Lanjut",
-      langkahFontWeight: null,
     );
   }
 }

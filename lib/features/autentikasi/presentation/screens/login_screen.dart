@@ -14,11 +14,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _obsecureText = true;
+  bool _obscureText = true;
 
   void _togglePasswordVisibility() {
     setState(() {
-      _obsecureText = !_obsecureText;
+      _obscureText = !_obscureText;
     });
   }
 
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40),
       child: Center(
@@ -92,25 +92,19 @@ class _LoginScreenState extends State<LoginScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            "Sugeng Rawuh",
-            style: Theme.of(context).textTheme.titleLarge!.copyWith(
-              fontSize: 22,
-              fontWeight: FontWeight.w700,
-            ),
+        Text(
+          "Sugeng Rawuh",
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
           ),
         ),
         const SizedBox(height: 5),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            "Masukkan alamat email dan password kamu",
-            style: Theme.of(context).textTheme.labelSmall!.copyWith(
-              color: Colors.black87,
-              fontWeight: FontWeight.w300,
-            ),
+        Text(
+          "Masukkan alamat email dan password kamu",
+          style: Theme.of(context).textTheme.labelSmall!.copyWith(
+            color: Colors.black87,
+            fontWeight: FontWeight.w300,
           ),
         ),
       ],
@@ -129,14 +123,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildFieldPassword() {
     return TextFormField(
-      obscureText: _obsecureText,
+      obscureText: _obscureText,
       keyboardType: TextInputType.emailAddress,
       decoration: _dekorasiField(
         prefixIcon: Iconsax.key1,
         hintText: "Masukkan password",
         suffixIcon: IconButton(
           onPressed: _togglePasswordVisibility,
-          icon: Icon(_obsecureText ? Iconsax.eye : Iconsax.eye_slash),
+          icon: Icon(_obscureText ? Iconsax.eye : Iconsax.eye_slash),
           color: AppColors.textSecondaryLight,
         ),
       ),
@@ -300,7 +294,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildHeader(context),
+                    _buildHeader(),
                     _buildJudul(context),
                     const SizedBox(height: 15),
                     _buildFieldEmail(),

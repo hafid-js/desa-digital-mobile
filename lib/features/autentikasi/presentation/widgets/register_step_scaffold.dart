@@ -1,4 +1,5 @@
 import 'package:desa_digital/core/constants/app_colors.dart';
+import 'package:desa_digital/features/autentikasi/domain/entities/register_step.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +34,6 @@ class RegisterStepScaffold extends StatelessWidget {
     required this.field,
     required this.onLanjut,
     required this.labelLanjut,
-    this.langkahFontWeight = FontWeight.w400,
     this.infoTambahan,
   });
 
@@ -43,7 +43,6 @@ class RegisterStepScaffold extends StatelessWidget {
   final Widget field;
   final VoidCallback onLanjut;
   final String labelLanjut;
-  final FontWeight? langkahFontWeight;
   final Widget? infoTambahan;
 
   PreferredSize _buildAppBar(BuildContext context) {
@@ -117,14 +116,9 @@ class RegisterStepScaffold extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              labelLanjut,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-          ],
+        child: Text(
+          labelLanjut,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
     );
@@ -136,7 +130,7 @@ class RegisterStepScaffold extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "$langkah dari 4",
+          "$langkah dari ${RegisterStepX.total}",
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
             fontSize: 22,
             fontWeight: FontWeight.w800,
@@ -146,7 +140,6 @@ class RegisterStepScaffold extends StatelessWidget {
           "Langkah Registrasi",
           style: Theme.of(context).textTheme.labelSmall!.copyWith(
             color: AppColors.textSecondaryLight,
-            fontWeight: langkahFontWeight,
           ),
         ),
       ],
@@ -159,7 +152,7 @@ class RegisterStepScaffold extends StatelessWidget {
       appBar: _buildAppBar(context),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 30),
-        child: Column(children: [field]),
+        child: field,
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
