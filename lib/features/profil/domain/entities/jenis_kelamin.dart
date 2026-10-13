@@ -1,0 +1,1 @@
+enum JenisKelamin { male, female }
