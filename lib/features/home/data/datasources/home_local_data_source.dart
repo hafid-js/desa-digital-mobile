@@ -7,7 +7,7 @@ import 'package:desa_digital/features/home/domain/entities/home_menu_item.dart';
 abstract interface class HomeDataSource {
   List<HomeMenuItem> menuItems();
 
-  List<ContentItem> agendaHariIni();
+  List<ContentItem> agendaAkanDatang();
 
   List<ContentItem> artikelTerbaru();
 
@@ -21,7 +21,7 @@ class HomeLocalDataSource implements HomeDataSource {
   List<HomeMenuItem> menuItems() => List.unmodifiable(_menuItems);
 
   @override
-  List<ContentItem> agendaHariIni() => List.unmodifiable(_agenda);
+  List<ContentItem> agendaAkanDatang() => List.unmodifiable(_agenda);
 
   @override
   List<ContentItem> artikelTerbaru() => List.unmodifiable(_artikel);
@@ -42,6 +42,7 @@ final List<HomeMenuItem> _menuItems = [
     title: 'Layanan Mandiri',
     icon: AppAssets.menuLetterRequest,
     route: Routes.permohonanSurat,
+    isInDevelopment: true,
   ),
   HomeMenuItem(
     title: 'Lapak Warga',

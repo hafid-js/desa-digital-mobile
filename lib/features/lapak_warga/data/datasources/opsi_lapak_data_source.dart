@@ -22,6 +22,7 @@ const List<String> opsiKategoriFilter = [
   'Perlengkapan Rumah',
   'Otomotif',
   'Kerajinan & Souvenir',
+  'Lowongan Kerja & Jasa',
 ];
 
 const List<String> opsiKategoriProduk = [
@@ -32,6 +33,7 @@ const List<String> opsiKategoriProduk = [
   'Perlengkapan Rumah',
   'Otomotif',
   'Kerajinan & Souvernir',
+  'Lowongan Kerja & Jasa',
 ];
 
 const List<String> opsiLokasi = [

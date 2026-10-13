@@ -10,5 +10,5 @@ class GetHomeAgenda extends BaseUseCase<List<ContentItem>, NoParams> {
 
   @override
   Result<List<ContentItem>> execute(NoParams params) =>
-      Result<List<ContentItem>>.success(_repository.getAgendaHariIni());
+      Result<List<ContentItem>>.success(_repository.getAgendaAkanDatang());
 }

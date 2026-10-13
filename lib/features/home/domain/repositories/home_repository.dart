@@ -5,7 +5,7 @@ import 'package:desa_digital/features/home/domain/entities/home_menu_item.dart';
 abstract interface class HomeRepository {
   List<HomeMenuItem> getMenuItems();
 
-  List<ContentItem> getAgendaHariIni();
+  List<ContentItem> getAgendaAkanDatang();
 
   List<ContentItem> getArtikelTerbaru();
 

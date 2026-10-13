@@ -1,3 +1,5 @@
+import 'package:desa_digital/features/agenda/domain/entities/jenis_agenda.dart';
+
 class EventAgenda {
   const EventAgenda({
     required this.title,
@@ -6,6 +8,7 @@ class EventAgenda {
     required this.lokasi,
     required this.penyelenggara,
     required this.deskripsi,
+    this.jenis = JenisAgenda.lainnya,
   });
 
   final String title;
@@ -14,4 +17,5 @@ class EventAgenda {
   final String lokasi;
   final String penyelenggara;
   final String deskripsi;
+  final JenisAgenda jenis;
 }

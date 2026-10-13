@@ -73,7 +73,89 @@ class AgendaScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDaftarEvent(BuildContext context, List<EventAgenda> events) {
+  Widget _chipJenis(BuildContext context, {
+    required String label,
+    required bool aktif,
+    required VoidCallback onTap,
+    IconData? icon,
+    Color? color,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(30),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: aktif ? AppColors.primary : Colors.white,
+            borderRadius: BorderRadius.circular(30),
+            border: Border.all(
+              color: aktif
+                  ? AppColors.primary
+                  : AppColors.grey.withAlpha(150),
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (icon != null) ...[
+                Icon(
+                  icon,
+                  size: 14,
+                  color: aktif ? Colors.white : color ?? AppColors.grey,
+                ),
+                const SizedBox(width: 5),
+              ],
+              Text(
+                label,
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: aktif ? Colors.white : Colors.black87,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFilterJenis(BuildContext context) {
+    final terpilih = _controller.jenisTerpilih.value;
+    return SizedBox(
+      height: 38,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        children: [
+          _chipJenis(
+            context,
+            label: "Semua",
+            aktif: terpilih == null,
+            onTap: () => _controller.pilihJenis(terpilih),
+          ),
+          for (final jenis in _controller.opsiJenis)
+            _chipJenis(
+              context,
+              label: jenis.label,
+              icon: jenis.icon,
+              color: jenis.color,
+              aktif: terpilih == jenis,
+              onTap: () => _controller.pilihJenis(jenis),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDaftarEvent(BuildContext context, List<EventAgenda> semuaEvents) {
+    final jenis = _controller.jenisTerpilih.value;
+    final events = jenis == null
+        ? semuaEvents
+        : semuaEvents.where((event) => event.jenis == jenis).toList();
+
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -86,6 +168,8 @@ class AgendaScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          _buildFilterJenis(context),
+          const SizedBox(height: 8),
           Text(
             "${events.length} Event",
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
@@ -93,18 +177,27 @@ class AgendaScreen extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 18),
+          const SizedBox(height: 12),
           Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: events.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: KartuAgenda(event: events[index]),
-                );
-              },
-            ),
+            child: events.isEmpty
+                ? Center(
+                    child: Text(
+                      "Tidak ada acara untuk jenis ini",
+                      style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                        color: AppColors.grey,
+                      ),
+                    ),
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: events.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: KartuAgenda(event: events[index]),
+                      );
+                    },
+                  ),
           ),
         ],
       ),

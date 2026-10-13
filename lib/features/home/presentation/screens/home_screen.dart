@@ -60,7 +60,20 @@ class HomeScreen extends StatelessWidget {
   Widget _buildMenuItem(BuildContext context, HomeMenuItem menu) {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
-      onTap: () => Get.toNamed(menu.route),
+      onTap: () {
+        if (menu.isInDevelopment) {
+          Get.snackbar(
+            menu.title,
+            "Fitur sedang dalam pengembangan",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            colorText: Colors.white,
+            margin: const EdgeInsets.all(16),
+          );
+          return;
+        }
+        Get.toNamed(menu.route);
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -147,8 +160,8 @@ class HomeScreen extends StatelessWidget {
       () => Column(
         children: [
           ContentSection(
-            title: "Agenda Hari Ini",
-            items: _controller.agendaHariIni,
+            title: "Agenda Akan Datang",
+            items: _controller.agendaAkanDatang,
             padding: const EdgeInsets.only(left: 15, top: 5, bottom: 8),
             onButtonPressed: () => Get.toNamed(Routes.agenda),
             onTap: (item) => Get.toNamed(

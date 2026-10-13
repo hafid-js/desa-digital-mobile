@@ -15,7 +15,7 @@ class HomeRepositoryImpl implements HomeRepository {
   List<HomeMenuItem> getMenuItems() => _dataSource.menuItems();
 
   @override
-  List<ContentItem> getAgendaHariIni() => _dataSource.agendaHariIni();
+  List<ContentItem> getAgendaAkanDatang() => _dataSource.agendaAkanDatang();
 
   @override
   List<ContentItem> getArtikelTerbaru() => _dataSource.artikelTerbaru();

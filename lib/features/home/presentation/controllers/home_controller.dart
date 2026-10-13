@@ -22,7 +22,7 @@ class HomeController extends GetxController {
   final GetApbdesSummary _getApbdesSummary;
 
   final RxList<HomeMenuItem> menuItems = <HomeMenuItem>[].obs;
-  final RxList<ContentItem> agendaHariIni = <ContentItem>[].obs;
+  final RxList<ContentItem> agendaAkanDatang = <ContentItem>[].obs;
   final RxList<ContentItem> artikelTerbaru = <ContentItem>[].obs;
   final Rxn<ApbdesSummary> ringkasanApbdes = Rxn<ApbdesSummary>();
 
@@ -36,7 +36,7 @@ class HomeController extends GetxController {
     menuItems.assignAll(
       _getMenuItems(const NoParams()).valueOrNull ?? const <HomeMenuItem>[],
     );
-    agendaHariIni.assignAll(
+    agendaAkanDatang.assignAll(
       _getAgenda(const NoParams()).valueOrNull ?? const <ContentItem>[],
     );
     artikelTerbaru.assignAll(
